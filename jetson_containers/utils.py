@@ -4,7 +4,7 @@ import grp
 import sys
 import pprint
 import requests
-
+from typing import Union
 
 def check_dependencies(install=True):
     """
@@ -132,7 +132,7 @@ def sudo_prefix(group='docker'):
         return ""
 
 
-def handle_text_request(url) -> str | None:
+def handle_text_request(url) -> Union[str,None]:
     """
     Handles a request to fetch text data from the given URL.
 

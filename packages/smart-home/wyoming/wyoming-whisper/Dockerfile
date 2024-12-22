@@ -2,7 +2,7 @@
 # name: wyoming-whisper
 # group: wyoming
 # config: config.py
-# depends: [homeassistant-base, cuda, cudnn, python:3.11, faster-whisper]
+# depends: [homeassistant-base, cuda, cudnn, python:3.8, faster-whisper]
 # test: test.sh
 # requires: '>=34.1.0'
 # docs: docs.md
@@ -29,7 +29,7 @@ COPY *.sh /tmp/wyoming/whisper/
 
 WORKDIR /usr/src
 
-RUN /tmp/wyoming/whisper/install.sh || /tmp/wyoming/whisper/build.sh
+RUN /tmp/wyoming/whisper/build.sh
 
 EXPOSE ${WHISPER_PORT}/tcp
 

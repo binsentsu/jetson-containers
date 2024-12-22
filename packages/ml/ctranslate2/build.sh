@@ -11,7 +11,7 @@ cd $CTRANSLATE_SOURCE/build
 install_dir="${CTRANSLATE_SOURCES}/build/install"
 
 # build C++ libraries
-cmake .. -DWITH_CUDA=ON -DWITH_CUDNN=ON -DWITH_MKL=OFF -DOPENMP_RUNTIME=COMP -DCMAKE_INSTALL_PREFIX=$install_dir
+cmake .. -DWITH_CUDA=ON -DWITH_CUDNN=ON -DWITH_MKL=OFF -DOPENMP_RUNTIME=NONE -DCMAKE_INSTALL_PREFIX=$install_dir
 
 make -j$(nproc)
 make install

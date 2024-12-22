@@ -10,14 +10,19 @@ FROM ${BASE_IMAGE}
 
 WORKDIR /opt
 
-RUN git clone https://github.com/guillaumekln/faster-whisper && \
+RUN apt update && \
+apt install -y rustc cargo
+
+RUN git clone https://github.com/SYSTRAN/faster-whisper && \
     cd faster-whisper && \
+    git fetch --tags && \
+    git checkout tags/v1.1.0 && \
     sed -i \
-        -e 's|^onnxruntime.*||g' \
-        -e 's|^ctranslate2.*||g' \
-        -e 's|^huggingface_hub.*||g' \
-        -e 's|^tokenizers.*|tokenizers|g' \
-        requirements.txt && \
+    -e 's|^onnxruntime.*||g' \
+    -e 's|^ctranslate2.*||g' \
+    -e 's|^huggingface_hub.*||g' \
+    -e 's|^tokenizers.*|tokenizers==0.20.3|g' \
+    requirements.txt && \
     cat requirements.txt && \
     pip3 install --no-cache-dir --verbose -r requirements.txt && \
     python3 setup.py bdist_wheel
